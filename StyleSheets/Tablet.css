@@ -1,0 +1,423 @@
+:root {
+    --main-color: #BB86FC;
+    --background-color: #121212;
+    --light-overlay: rgba(255, 255, 255, 0.05);
+    --medium-overlay: rgba(255, 255, 255, 0.1);
+    --heavy-overlay: rgba(255, 255, 255, 0.15);
+    --secondary-color: #03DAC5;
+}
+
+html {
+    font-family: "DINPro", helvetica, arial, sans-serif;
+    font-size: 1.25rem;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: var(--background-color);
+}
+
+.topnav {
+    background-color: var(--light-overlay);
+    overflow: hidden;
+    display: flex;
+    width: 100%;    
+}
+
+.navitem:hover{
+    background-color: var(--secondary-color);
+    color: white;
+    transition: 0.3s;
+}
+
+.navitem.active {
+    background-color: var(--main-color);
+}
+
+.navitem {
+    background-color: transparent;
+    padding: 1rem 0.5rem;
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 4px;
+    border: 0;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.logged_in_user {
+    height: 3.5rem;
+    border-radius: 10px;
+    margin-right: 0.5rem;
+}
+
+.topleftnav{
+    flex-grow: 4;
+}
+
+.topmiddlenav {
+    flex-grow: 4;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.searchbar {
+    display: inline-block;
+    position: relative;
+}
+
+.searchbar > i {
+    color: white;
+    position: absolute;
+    right: 3rem;
+    top: 50%;
+    transform: translate(0,-50%);
+    transition-duration: 0.3s;
+}
+
+.searchbar > i:hover {
+    color: var(--main-color);
+    transition-duration: 0.3s;
+}
+
+.search {
+    padding: 0.5rem 0.5rem;
+    width: 12rem;
+    font-size: 0.75rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 5px;
+    border: 2px solid var(--medium-overlay);
+}
+
+.searchbutton {
+    padding: 0.5rem 0.5rem;
+    font-size: 0.75rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 5px;
+    border: 2px solid var(--medium-overlay);
+    transition: 0.3s;
+}
+
+.searchbutton:hover {
+    background-color: var(--secondary-color) !important;
+    transition: 0.3s;
+}
+
+.toprightnav {
+    display: flex;
+    flex-grow: 4;
+    justify-content: flex-end;
+}
+
+.logged_in_user {
+    height: 3rem;
+}
+
+.toprightnav .questionbutton:hover{
+    color: var(--secondary-color);
+}
+
+.toprightnav .navitem:hover{
+    color: var(--secondary-color) !important;
+    background-color: var(--light-overlay) !important;
+}
+
+.movietable {
+    color: white;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.movie {
+    border-radius: 5px;
+    border: none;
+    width: 11rem;
+    margin: 1rem;
+    color: white;
+    background-color: var(--light-overlay);
+}
+
+.movieposter {
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    height: 6rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.movietitle {
+    width: 100%;
+    height: 0.7rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.moviepage {
+    margin: 20px 30px;
+}
+
+.progressBar {
+    background-color: var(--medium-overlay);
+    width: 100%;
+    border-radius: 3px;
+    height: 0.3rem;
+}
+
+.bar {
+    background-color: var(--main-color);
+    height: 0.3rem;
+    border-radius: 9px;
+}
+
+.movieheader {
+    margin-bottom: 20px;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-left: 0.45rem;
+}
+
+.movieplayer {
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+}
+
+.users {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.profile_pic {
+    width: 10rem;
+    height: 10rem;
+    border: none;
+    border-radius: 1rem;
+}
+
+.title {
+    color: white;
+    text-align: center;
+    font-size: 4rem;
+    margin-top: 8rem;
+    margin-bottom: 5rem ;
+}
+
+.titleuser {
+    color: white;
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 6rem;
+    margin-bottom: 2rem ;
+}
+
+.username {
+    color: white;
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+.createuser{
+    display: flex;
+    justify-content: center;
+    margin-top: 4rem;
+    width: 100%;
+}
+
+.profile {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 1rem;
+    align-items: center;
+}
+
+.createuserinput {
+    padding: 0.5rem 0.5rem;
+    width: 20rem;
+    font-size: 0.75rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 5px;
+    border: 2px solid var(--medium-overlay);
+    display: block;
+    margin: 0.4rem 0 0 0;
+}
+
+.createuserinput[type=submit] {
+    width: 100%;
+    background-color: var(--main-color);
+    transition-duration: 0.35s;
+}
+
+.createuserinput[type=submit]:disabled {
+    background-color: var(--medium-overlay) !important;
+}
+
+.createuserinput[type=submit]:hover {
+    background-color: var(--secondary-color);
+    transition-duration: 0.35s;
+}
+
+.createuserinput[type=file]::file-selector-button {
+    background-color: var(--heavy-overlay);
+    color: white;
+    border-radius: 5px;
+    border: none;
+}
+
+.createuserinput[type=file]::-webkit-file-upload-button {
+    background-color: var(--heavy-overlay);
+    color: white;
+    border-radius: 5px;
+    border: none;
+}
+
+.backarrow{
+    color: white;
+    font-size: 2rem;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    transition-duration: 0.3s;
+}
+
+.backarrow:hover {
+    color: var(--main-color);
+}
+
+.loginPassword{
+    padding: 1rem 1rem;
+    font-size: 1rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 10px;
+    border: 2px solid var(--medium-overlay);
+    margin: 2rem 0 0 0;
+    width: 15rem;
+    transition-duration: 1s;
+
+}
+
+.loginButton {
+    padding: 1rem 1rem;
+    font-size: 1rem;
+    color: white;
+    background-color: var(--main-color);
+    border-radius: 10px;
+    border: 2px solid var(--medium-overlay);
+    display: block;
+    margin-top: 0.3rem;
+    transition-duration: 0.35s;
+    width: 17rem;
+}
+
+.loginButton:hover {
+    background-color: var(--secondary-color);
+    transition-duration: 0.35s;
+}
+
+.error {
+    border: 2px solid rgba(255,0,0,1);
+    background-color: rgba(255, 0, 0, 0.5);
+    transition-duration: 0s;
+}
+
+.selector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    width: 20rem;
+}
+
+.seasons {
+    position: relative;
+    color: white;
+    width: 100%;
+}
+
+.season {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: 2px solid var(--medium-overlay);
+    background-color: var(--main-color);
+    color: white;
+    font-size: 1.25rem;
+    padding: 1.2rem 2.4rem;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.seasons > i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translate(0, -50%);
+    pointer-events: none;
+}
+
+.episodes {
+    width: 100%;
+    display: flex;
+    color: white;
+    flex-direction: column;
+    border: 2px solid var(--medium-overlay);
+}
+
+.episode {
+    width: calc(100% - 4.8rem);
+    padding: 1.2rem 2.4rem;
+    font-size: 1.25rem;
+    border-bottom: 2px solid var(--medium-overlay);
+}
+
+.active_episode {
+    background-color: var(--secondary-color);
+}
+
+.episode:last-child {
+    padding: 1.2rem 2.4rem;
+    font-size: 1.25rem;
+    border-bottom: 0;
+}
+
+h2 {
+    color: white;
+    margin-left: 3rem;
+    margin-top: 4rem;
+}
+
+h3 {
+    color: white;
+    margin-left: 3rem;
+    margin-top: 2.5rem;
+}
+
+.questionText {
+    color: white;
+    margin-left: 3rem;
+    margin-right: 6rem;
+}
+
+
