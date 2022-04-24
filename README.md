@@ -32,6 +32,8 @@ We built our own Streaming Server.
 ### Code that we used
 * [getID3](https://github.com/JamesHeinrich/getID3)
 * [MongoDB Library](https://github.com/IQisMySenpai)
+* [FontAwesome](https://fontawesome.com/)
+* [jQuery](https://jquery.com/)
 
 ## Setup
 We are using *Ubuntu Server 22.04 LTS*
@@ -50,6 +52,8 @@ Upgrade Packages
 ```
 sudo apt upgrade
 ```
+
+Also Download FontAwesome and add it in a Folder called `Font` to the root of the Project
 
 ### Installs
 Openssh Server
