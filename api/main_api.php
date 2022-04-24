@@ -52,7 +52,7 @@ switch ($_POST['action']) {
         } elseif ($filter === 'Series') {
             $f['type'] = 'serie';
         }
-        $movies = mongo_find('movies', $f, ['sort' => ['importDate' => 1]]);
+        $movies = mongo_find('movies', $f, array('sort' => ['importDate' => 1], 'typeMap' => array('array'=>'array', 'document'=>'array', 'root'=>'array')));
         $data = [];
         foreach ($movies as $movie) {
             $d = [
