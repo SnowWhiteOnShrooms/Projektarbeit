@@ -13,6 +13,43 @@ function error($message, $code = 400) // Error handling code
     exit(1);
 }
 
+function get_ip_address() {
+    if(!empty($_SERVER['HTTP_CLIENT_IP'])){
+        //ip from share internet
+        $ip = $_SERVER['HTTP_CLIENT_IP'];
+    }elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+        //ip pass from proxy
+        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    }else{
+        $ip = $_SERVER['REMOTE_ADDR'];
+    }
+
+    return $ip;
+}
+
+function check_sketch() {
+    $ip = get_ip_address();
+
+    $result = mongo_find('connected_ips', ['ip_address' => $ip], array('typeMap' => array('array'=>'array', 'document'=>'array', 'root'=>'array')));
+
+    if (count($result) > 0) {
+        return $result[0]['sketch_level'];
+    } else {
+        return 0;
+    }
+}
+
+function sketchy_ip() {
+    $ip = get_ip_address();
+    $result = mongo_find('connected_ips', ['ip_address' => $ip], array('typeMap' => array('array'=>'array', 'document'=>'array', 'root'=>'array')));
+
+    if (count($result) > 0) {
+        mongo_update_one('connected_ips', ['ip_address' => $ip], ['$set' => ['sketch_level' => ($result[0]['sketch_level'] + 1)]]);
+    } else {
+        mongo_insert_one('connected_ips', ['ip_address' => $ip, 'sketch_level' => 1]);
+    }
+}
+
 function number_val_sorting($value_A, $value_B) {
     $val_A = intval(preg_replace('/\D/', '', $value_A));
     $val_B = intval(preg_replace('/\D/', '', $value_B));

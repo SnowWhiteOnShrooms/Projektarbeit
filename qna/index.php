@@ -1,14 +1,21 @@
 <?php
 session_start();
 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/api/defaults.php';
+
+if (check_sketch() > 5) {
+    error('Your IP is blocked, contact the server admin.', 401);
+}
+
+
 // Import MongoDB library
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Mongo/lib_mongo.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/api/defaults.php';
 
 $result = mongo_find('users') ?? [];
 
 if (count($result) > 0) {
     if(!isset($_SESSION['username'])) {
+        sketchy_ip();
         header('Location: /login');
         exit();
     }
