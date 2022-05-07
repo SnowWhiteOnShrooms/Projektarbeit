@@ -4,6 +4,7 @@ session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/api/defaults.php';
 
 if (check_sketch() > 5) {
+    header('Location: /blocked_ip');
     error('Your IP is blocked, contact the server admin.', 401);
 }
 
@@ -65,6 +66,11 @@ $username = urldecode($_GET['username']);
                     window.location.href = '/';
                 },
                 error: function(data) {
+                    let info = JSON.parse(data);
+                    if (info['message'] === 'Your IP is blocked, contact the server admin.') {
+                        window.location.href = '/blocked_ip.php';
+                        return;
+                    }
                     let passwordelement = $('.loginPassword');
                     passwordelement.val('');
                     passwordelement.toggleClass('error');

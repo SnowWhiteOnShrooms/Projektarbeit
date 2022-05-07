@@ -4,6 +4,7 @@ session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/api/defaults.php';
 
 if (check_sketch() > 5) {
+    header('Location: /blocked_ip');
     error('Your IP is blocked, contact the server admin.', 401);
 }
 
