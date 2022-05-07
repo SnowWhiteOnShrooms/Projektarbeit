@@ -5,7 +5,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/api/defaults.php';
 
 if (check_sketch() > 5) {
     header('Location: /blocked_ip.php');
-    error('Your IP is blocked, contact the server admin.', 401);
+    error('Your IP is blocked, contact the server admin.', 301);
 }
 
 // Import MongoDB library
@@ -66,8 +66,7 @@ $username = urldecode($_GET['username']);
                     window.location.href = '/';
                 },
                 error: function(data) {
-                    let info = JSON.parse(data);
-                    if (info['message'] === 'Your IP is blocked, contact the server admin.') {
+                    if (data.status === 402) {
                         window.location.href = '/blocked_ip.php';
                         return;
                     }

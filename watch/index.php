@@ -5,7 +5,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/api/defaults.php';
 
 if (check_sketch() > 5) {
     header('Location: /blocked_ip.php');
-    error('Your IP is blocked, contact the server admin.', 401);
+    error('Your IP is blocked, contact the server admin.', 301);
 }
 
 if(!isset($_SESSION['username'])) {
