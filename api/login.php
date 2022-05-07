@@ -2,14 +2,13 @@
 session_start();
 $config = (require $_SERVER['DOCUMENT_ROOT'] . '/api/config.php');
 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Mongo/lib_mongo.php';
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/api/defaults.php';
 
 if (check_sketch() > 5) {
-    header('Location: /blocked_ip');
     error('Your IP is blocked, contact the server admin.', 401);
 }
-
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Mongo/lib_mongo.php';
 
 $password = $_POST['password'];
 $username = $_POST['username'];
