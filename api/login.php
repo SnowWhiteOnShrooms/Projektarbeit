@@ -13,6 +13,11 @@ if (check_sketch() > 5) {
 $password = $_POST['password'];
 $username = $_POST['username'];
 
+if (gettype($username) !== 'string' || gettype($password) !== 'string') {
+    sketchy_ip();
+    error('Username or Password was not a string', 401);
+}
+
 $result = mongo_find('users', ['username' => $username]) ?? [];
 
 if (count($result) < 1) {
