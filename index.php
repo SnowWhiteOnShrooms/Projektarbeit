@@ -9,7 +9,6 @@ if (check_sketch() > 5) {
 }
 
 if(!isset($_SESSION['username'])) {
-    sketchy_ip();
     header('Location: /login');
     exit();
 }
