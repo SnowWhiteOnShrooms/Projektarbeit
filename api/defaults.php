@@ -137,13 +137,48 @@ function uploadMovies () {
                         'duration' => ceil($m['playtime_seconds'])
                     ]); // Create entry
 
-                    mkdir(sprintf('%s/Data/%s', $path, $id)); // Make folder for all data;
-                    copy(sprintf('%s/Data/Upload/Movies/%s/%s', $path, $file, $thumbnail_name), sprintf('%s/Data/%s/thumbnail.%s', $path, $id, $thumbnail_format)); // Copy into new folder.
-                    unlink(sprintf('%s/Data/Upload/Movies/%s/%s', $path, $file, $thumbnail_name)); // Delete in upload folder
-                    copy(sprintf('%s/Data/Upload/Movies/%s/%s', $path, $file, $movie_name), sprintf('%s/Data/%s/movie.%s', $path, $id, $movie_format)); // Copy into new folder.
-                    unlink(sprintf('%s/Data/Upload/Movies/%s/%s', $path, $file, $movie_name)); // Delete in upload folder
-                    closedir($movies); // Close Folder
-                    rmdir(sprintf('%s/Data/Upload/Movies/%s', $path, $file)); // Remove folder in import folder;
+                    try {
+                        mkdir(sprintf('%s/Data/%s', $path, $id)); // Make folder for all data;
+                    } catch(Exception $e) {
+                        error(sprintf('Error Creating Directory: %s', $e), 405);
+                    }
+
+                    try {
+                        copy(sprintf('%s/Data/Upload/Movies/%s/%s', $path, $file, $thumbnail_name), sprintf('%s/Data/%s/thumbnail.%s', $path, $id, $thumbnail_format)); // Copy into new folder.
+                    } catch(Exception $e) {
+                        error(sprintf('Error Copying Thumbnail: %s', $e), 405);
+                    }
+
+                    try {
+                        unlink(sprintf('%s/Data/Upload/Movies/%s/%s', $path, $file, $thumbnail_name)); // Delete in upload folder
+                    } catch(Exception $e) {
+                        error(sprintf('Error Deleting Thumbnail in Upload: %s', $e), 405);
+                    }
+
+                    try {
+                        copy(sprintf('%s/Data/Upload/Movies/%s/%s', $path, $file, $movie_name), sprintf('%s/Data/%s/movie.%s', $path, $id, $movie_format)); // Copy into new folder.
+                    } catch(Exception $e) {
+                        error(sprintf('Error Copying Movie: %s', $e), 405);
+                    }
+
+                    try {
+                        unlink(sprintf('%s/Data/Upload/Movies/%s/%s', $path, $file, $movie_name)); // Delete in upload folder
+                    } catch(Exception $e) {
+                        error(sprintf('Error Deleting Movie in Upload: %s', $e), 405);
+                    }
+
+                    try {
+                        closedir($movies); // Close Folder
+                    } catch(Exception $e) {
+                        error(sprintf('Error Closing Movie Folder in Upload: %s', $e), 405);
+                    }
+
+                    try {
+                        rmdir(sprintf('%s/Data/Upload/Movies/%s', $path, $file)); // Remove folder in import folder;
+                    } catch(Exception $e) {
+                        error(sprintf('Error Deleting Movie Folder in Upload: %s', $e), 405);
+                    }
+
                     $imported_count++;
                 }
             }
